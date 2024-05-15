@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI to Human Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            min-height: 100px;
+        }
+        .output p {
+            margin: 5px 0;
+        }
+        .copy-btn {
+            background-color: #007bff;
+        }
+        .clear-btn {
+            background-color: #dc3545;
+        }
+        .btn-group {
+            margin-top: 20px;
+        }
+        .btn-group button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI to Human Text Converter</h1>
+        <textarea id="inputText" placeholder="Paste AI-generated text here..."></textarea>
+        <button onclick="convertToHuman()">Convert to Human Text</button>
+        <div class="output" id="outputText"></div>
+        <div class="btn-group">
+            <button onclick="copyToClipboard()" class="copy-btn">Copy to Clipboard</button>
+            <button onclick="clearAll()" class="clear-btn">Clear Input/Output</button>
+        </div>
+    </div>
+
+    <script>
+        function convertToHuman() {
+            const inputText = document.getElementById('inputText').value;
+            const outputText = document.getElementById('outputText');
+            
+            // Replace AI-generated text with human-like text
+            const humanText = inputText.replace(/President/g, 'The leader of our country')
+                                       .replace(/Constitutional/g, 'like the rules of our country')
+                                       .replace(/Union/g, 'the whole country')
+                                       .replace(/Commander-in-Chief/g, 'leader of our military')
+                                       .replace(/rebellion/g, 'big fight between different parts of our country')
+                                       .replace(/Confederate/g, 'people fighting against our country')
+                                       .replace(/habeas corpus/g, 'important right to be treated fairly')
+                                       .replace(/Civil War/g, 'big fight between our own people')
+                                       .replace(/democracy/g, 'fair rules for everyone')
+                                       .replace(/freedom/g, 'being able to make our own choices');
+
+            outputText.innerHTML = `<p>${humanText}</p>`;
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText').textContent.trim();
+            const tempInput = document.createElement('textarea');
+            tempInput.value = outputText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Copied to clipboard!');
+        }
+
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
